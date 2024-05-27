@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.renepanke</groupId>
+    <artifactId>java-maven-license-scan-example</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- CDDL 1.0 -->
+<!--        <dependency>-->
+<!--            <groupId>com.sun.mail</groupId>-->
+<!--            <artifactId>javax.mail</artifactId>-->
+<!--            <version>1.6.2</version>-->
+<!--        </dependency>-->
+        <!-- LGPLv3 & Apache 2.0 -->
+<!--        <dependency>-->
+<!--            <groupId>com.github.fge</groupId>-->
+<!--            <artifactId>json-schema-validator</artifactId>-->
+<!--            <version>2.2.6</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.carlomorelli</groupId>
+                <artifactId>licensescan-maven-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <printLicenses>true</printLicenses>
+                    <forbiddenLicenses>
+                        <license>regex:LGPL 2\\.1</license>
+                        <license>regex:LGPL.*(v|version)\\.?\\s?2\\.1</license>
+                        <license>regex:lgplv?3</license>
+                        <license>regex:MPL 1\\.1</license>
+                        <license>regex:MPL 2\\.0</license>
+                        <license>regex:GNU General Public License, version 2.*classpath exception</license>
+                        <license>regex:GNU General Public License, version 2.*cp?e</license>
+                        <license>regex:GNU General Public License, version 2.*, with the classpath exception</license>
+                        <license>regex:GPL2 w/ CPE</license>
+                        <license>regex:Common Development and Distribution License( \\(CDDL\\),?)? (version )?(.?\\s?)?1\\.0</license>
+                        <license>regex:Common Development and Distribution License( \\(CDDL\\),?)? (version )?(.?\\s?)?1\\.1</license>
+                        <license>regex:Common Development and Distribution( License)?</license>
+                        <license>regex:CDDL 1(\\.0)</license>
+                        <license>regex:CDDL 1\\.1</license>
+                    </forbiddenLicenses>
+                    <failBuildOnViolation>true</failBuildOnViolation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>audit</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
